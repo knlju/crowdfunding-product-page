@@ -222,8 +222,6 @@ main {
     color: var(--moderateCyan);
 }
 
-/* TODO radius 8 radius 34 */
-
 .reward-actions {
     margin-top: 24px;
     align-items: center;
@@ -545,10 +543,6 @@ main {
     }
     .top-actions {
         padding: 24px 0 40px 0;
-    }
-    .button {
-        /* TODO */
-        /* padding: 18px 42px; */
     }
     .pledge-btn {
         font-size: 14px;
