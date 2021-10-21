@@ -51,7 +51,7 @@ const mahoganyLeftNode = document.querySelectorAll(".mahogany-left")
 
 const progressBarDiv = document.querySelector(".current-progress")
 
-let currBacked = getLocalStorageItem("currBacked", 13012)
+let currBacked = getLocalStorageItem("currBacked", "13012")
 let currBackers = getLocalStorageItem("currBackers")
 // moze ovo i da se racuna
 let currDaysleft = getLocalStorageItem("currDaysleft", "69")
@@ -139,7 +139,7 @@ const updateData = moneyPledged => {
     if (pledgedNumeric >= 75 && noReward) {
         if(blackEditionLeft !== 0) {
             blackEditionLeft--
-            localStorage.setItem("blackSpecialLeft", blackEditionLeft)
+            localStorage.setItem("blackEditionLeft", blackEditionLeft)
             noReward = false
         } else noReward = true
     } 
