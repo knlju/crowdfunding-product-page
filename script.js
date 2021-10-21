@@ -60,9 +60,7 @@ let bambooStandLeft = getLocalStorageItem("bambooStandLeft", "100")
 let blackEditionLeft = getLocalStorageItem("blackEditionLeft", "50")
 let mahoganySpecialLeft = getLocalStorageItem("mahoganySpecialLeft", "0")
 
-const updateProgressBar = () => {
-    progressBarDiv.style.width = `${currBacked / 100000 * 100}%`
-}
+const updateProgressBar = () => progressBarDiv.style.width = `${currBacked / 100000 * 100}%`
 
 const renderData = () => {
     backedNode.textContent = "$" + currBacked.toLocaleString()
@@ -74,6 +72,7 @@ const renderData = () => {
     mahoganyLeftNode.forEach(el => el.textContent = mahoganySpecialLeft)
 
     disableUnavailableRewards()
+    updateProgressBar()
 }
 
 // selecting reward
@@ -82,7 +81,7 @@ const selectionModalBtnNodes = document.querySelectorAll(".open-selection-modal"
 const selectionModal = document.querySelector(".selection-modal-wrapper")
 const closeSelectionModal = selectionModal.querySelector(".close-modal")
 const successModal = document.querySelector(".modal-success-wrapper")
-const closeSuccessModal = successModal.querySelector(".close-modal")
+const closeSuccessModal = successModal.querySelector(".close-modal-success")
 
 const selectionRadioButtons = document.querySelectorAll(".option-selection-name")
 
@@ -108,15 +107,9 @@ const pledgeButtons = document.querySelectorAll("button.modal-pledge-action")
 
 // lazy
 
-const disableMahoganyReward = () => {
-    document.querySelectorAll(".mahogany-reward").forEach(node => node.classList.add("unavailable"))
-}
-const disableBlackReward = () => {
-    document.querySelectorAll(".black-reward").forEach(node => node.classList.add("unavailable"))
-}
-const disableBambooReward = () => {
-    document.querySelectorAll(".mahogany-reward").forEach(node => node.classList.add("unavailable"))
-}
+const disableMahoganyReward = () => document.querySelectorAll(".mahogany-reward").forEach(node => node.classList.add("unavailable"))
+const disableBlackReward = () => document.querySelectorAll(".black-reward").forEach(node => node.classList.add("unavailable"))
+const disableBambooReward = () => document.querySelectorAll(".mahogany-reward").forEach(node => node.classList.add("unavailable"))
 
 const disableUnavailableRewards = () => {
     if (mahoganySpecialLeft <= 0) {
@@ -131,11 +124,12 @@ const disableUnavailableRewards = () => {
 }
 
 const updateData = moneyPledged => {
-    let noReward = false
+    let noReward = true
     const pledgedNumeric = parseInt(moneyPledged)
     currBacked += pledgedNumeric
     currBackers++
 
+    // get closest reward
     if (pledgedNumeric >= 200) {
         if (mahoganySpecialLeft !== 0) {
             mahoganySpecialLeft--
@@ -161,7 +155,8 @@ const updateData = moneyPledged => {
 }
 
 const toggleSuccessModal = () => {
-    successModal.classList.toggle(".hidden")
+    successModal.classList.toggle("hidden")
+    console.log("lol")
 }
 
 const handlePledgeClick = btn => {
